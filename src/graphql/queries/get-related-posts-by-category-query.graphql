@@ -1,0 +1,21 @@
+query GetRelatedPostsByCategory($slug: String!, $idPost: ID!) {
+  posts(
+    where: {categories_some: {slug: $slug}, id_not: $idPost}
+    orderBy: publishedAt_ASC
+    stage: PUBLISHED
+  ) {
+    id
+    title
+    slug
+    publishedAt
+    excerpt
+    cover {
+      url
+    }
+    categories {
+      id
+      title
+      slug
+    }
+  }
+}

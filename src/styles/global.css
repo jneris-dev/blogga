@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    @apply bg-white text-blue-500;
+    -webkit-font-smoothing: antialiased;
+}
+
+.content-single blockquote {
+    @apply font-serif border-l-2 border-blue-400 italic pl-10
+}
+
+.content-single a {
+    @apply underline underline-offset-2 cursor-pointer
+}
+
+.content-single h2 {
+    @apply text-4xl leading-normal font-medium
+}
+
+.content-single h3 {
+    @apply text-3xl leading-normal font-medium
+}
+
+.content-single ul {
+    @apply list-disc pl-10
+}
