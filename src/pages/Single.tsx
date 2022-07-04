@@ -5,11 +5,12 @@ import { useGetPostBySlugQuery } from "../graphql/generated";
 import { Header } from "../components/Header";
 import { Newsletter } from "../components/Newsletter";
 import { Related } from "../components/Related";
+import { Footer } from "../components/Footer";
 
 export function Single() {
     const { slugPage } = useParams<{ slugPage: string }>()
 
-    const { data } = useGetPostBySlugQuery({
+    const { data, loading } = useGetPostBySlugQuery({
         variables: {
             slug: slugPage!,
         }
@@ -20,6 +21,9 @@ export function Single() {
         month: 'long',
         day: 'numeric'
     })
+
+    if (loading)
+        return <p>Loading...</p>
 
     return (
         <div className="p-5 w-full h-auto">
@@ -34,9 +38,18 @@ export function Single() {
                     </Link>
                     <div className="flex flex-col">
                         <div className="mb-5 flex flex-row items-center uppercase text-xs font-medium">
-                            <span className="rounded-l-md border py-2 px-3">
-                                {data?.post?.categories[0].title}
-                            </span>
+                            <div className="rounded-l-md border py-2 px-3 gap-2 flex">
+                                {data?.post?.categories.slice(0, 2).map((category) => {
+                                    return (
+                                        <span
+                                            key={category.id}
+                                            className="after:content-[','] last:after:content-['']"
+                                        >
+                                            {category.title}
+                                        </span>
+                                    )
+                                })}
+                            </div>
                             <span className="py-2 border bg-white rounded-r-md text-blue-500 px-3">
                                 {readable_date}
                             </span>
@@ -56,10 +69,40 @@ export function Single() {
                 />
             </div>
 
+            <div className="flex flex-row gap-4 max-w-[780px] md:px-5 mt-5 mx-auto items-center">
+                <div className="rounded-full overflow-hidden w-8 h-8 ring-offset-2 ring-1 ring-blue-400">
+                    <img
+                        src={data?.post?.author?.avatar?.url}
+                        alt=""
+                        className="w-full h-full rounded full object-cover"
+                    />
+                </div>
+
+                <div className="flex gap-2 text-sm">
+                    <strong>{data?.post?.author?.name}</strong>
+                    <span>•</span>
+                    <span>{readable_date}</span>
+                </div>
+            </div>
+
             <div
-                className="w-full max-w-[780px] md:px-5 my-20 mx-auto gap-5 flex flex-col text-lg content-single"
+                className="w-full max-w-[780px] md:px-5 my-10 mx-auto gap-5 flex flex-col text-lg content-single"
                 dangerouslySetInnerHTML={{ __html: data?.post?.content.html! }}
             />
+
+
+            <div className="w-full max-w-[780px] md:px-5 mx-auto mb-20 flex gap-3">
+                {data?.post?.tags.map((tag, key) => {
+                    return (
+                        <span
+                            key={key}
+                            className="px-4 py-3 bg-blue-300 rounded text-sm"
+                        >
+                            {tag}
+                        </span>
+                    )
+                })}
+            </div>
 
             <hr className="w-full max-w-[970px] mx-auto border-zinc-300" />
 
@@ -75,12 +118,7 @@ export function Single() {
                 <Newsletter />
             </div>
 
-            <footer className="w-full max-w-[970px] mx-auto text-center px-5 pb-5">
-                <hr className="mb-10 border-zinc-300" />
-                <p className="font-medium text-md leading-relaxed">
-                    Copyright 2022 - João Neris
-                </p>
-            </footer>
+            <Footer />
         </div>
     );
 }

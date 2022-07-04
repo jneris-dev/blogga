@@ -1,5 +1,6 @@
 import { List, X } from "phosphor-react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export function Header() {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -7,9 +8,13 @@ export function Header() {
     return (
         <>
             <nav className="flex flex-row w-full h-auto max-w-[1260px] mx-auto items-center justify-between px-10">
-                <span className="text-2xl font-bold uppercase">
-                    Blogga
-                </span>
+                <Link
+                    to={`/`}
+                >
+                    <span className="text-2xl font-bold uppercase">
+                        Blogga
+                    </span>
+                </Link>
                 <ul className="flex-row gap-10 hidden md:flex">
                     <li>Design Tools</li>
                     <li>Daily Updates</li>

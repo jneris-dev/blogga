@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { Group } from "../components/Group";
 import { Header } from "../components/Header";
 import { Newsletter } from "../components/Newsletter";
+import { Footer } from "../components/Footer";
 
 export function Category() {
     const { category } = useParams<{ category: string }>()
@@ -30,12 +31,7 @@ export function Category() {
                 <Newsletter />
             </div>
 
-            <footer className="w-full max-w-[970px] mx-auto text-center px-5 pb-5">
-                <hr className="mb-10 border-zinc-300" />
-                <p className="font-medium text-md leading-relaxed">
-                    Copyright 2022 - João Neris
-                </p>
-            </footer>
+            <Footer />
         </div>
     );
 }

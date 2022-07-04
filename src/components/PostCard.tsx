@@ -24,9 +24,16 @@ export function PostCard(props: PostProps) {
         <div className="w-full position-relative flex md:flex-row flex-col items-stretch gap-5 pt-14 first:pt-0 pb-14 last:pb-0">
             <div className="flex-1 md:order-1 order-2 items-stretch">
                 <div className="mb-5 gap-2 flex flex-row items-center">
-                    <span className="rounded bg-blue-300 py-2 px-3">
-                        {props.categories[0].title}
-                    </span>
+                    {props?.categories.slice(0, 2).map((category) => {
+                        return (
+                            <span
+                                key={category.id}
+                                className="rounded bg-blue-300 py-2 px-3"
+                            >
+                                {category.title}
+                            </span>
+                        )
+                    })}
                     <span className="rounded bg-white py-2 px-3 uppercase">
                         {dateFormatted}
                     </span>

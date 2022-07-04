@@ -1,0 +1,17 @@
+query GetPosts {
+    posts(orderBy: publishedAt_ASC, stage: PUBLISHED) {
+        id
+        title
+        slug
+        publishedAt
+        excerpt
+        cover {
+            url
+        }
+        categories {
+            id
+            title
+            slug
+        }
+    }
+}
