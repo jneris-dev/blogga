@@ -26,12 +26,14 @@ export function PostCard(props: PostProps) {
                 <div className="mb-5 gap-2 flex flex-row items-center">
                     {props?.categories.slice(0, 2).map((category) => {
                         return (
-                            <span
-                                key={category.id}
-                                className="rounded bg-blue-300 py-2 px-3"
-                            >
-                                {category.title}
-                            </span>
+                            <Link to={`/category/${category.slug}`}>
+                                <span
+                                    key={category.id}
+                                    className="rounded bg-blue-300 py-2 px-3"
+                                >
+                                    {category.title}
+                                </span>
+                            </Link>
                         )
                     })}
                     <span className="rounded bg-white py-2 px-3 uppercase">
@@ -43,9 +45,11 @@ export function PostCard(props: PostProps) {
                 </h3>
                 <p className="text-lg text-ellipsis">
                     {props.excerpt}
+                </p>
+                <p className="text-right mt-4">
                     <Link
-                        to={`/${props.slug}`}
-                        className="block text-right mt-4 text-sm font-bold underline underline-offset-1 hover:no-underline cursor-pointer">
+                        to={`/post/${props.slug}`}
+                        className="text-sm font-bold underline underline-offset-1 hover:no-underline cursor-pointer">
                         Continuar lendo
                     </Link>
                 </p>

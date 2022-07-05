@@ -8,11 +8,11 @@ import { Related } from "../components/Related";
 import { Footer } from "../components/Footer";
 
 export function Single() {
-    const { slugPage } = useParams<{ slugPage: string }>()
+    const { slug } = useParams<{ slug: string }>()
 
     const { data, loading } = useGetPostBySlugQuery({
         variables: {
-            slug: slugPage!,
+            slug: slug!,
         }
     })
 

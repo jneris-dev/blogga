@@ -7,15 +7,17 @@ export function Newsletter() {
             <p className="text-lg text-zinc-400 mb-10">
                 I post fresh content every week.
             </p>
-            <form action="" className="flex sm:flex-row flex-col max-w-[400px] w-full sm:gap-0 gap-3">
+            <form action="" className="flex sm:flex-row rounded-md flex-col max-w-[400px] w-full sm:gap-0 gap-3 focus-within:ring-offset-2 focus-within:ring-offset-blue-500 focus-within:ring-2 focus-within:ring-green-500">
+                <label className="mb-2 text-sm sr-only">Your Email</label>
                 <input
-                    type="text"
+                    type="email"
+                    required
                     placeholder="Email address"
-                    className="sm:flex-1 h-12 sm:rounded-r-none rounded-md w-full pl-5 text-blue-500"
+                    className="sm:flex-1 h-12 sm:rounded-r-none rounded-md w-full pl-5 text-blue-500 outline-none peer"
                 />
                 <button
                     type="submit"
-                    className="bg-green-500 text-blue-500 uppercase font-bold flex items-center justify-center w-[136px] sm:rounded-l-none rounded-md text-xs h-12 mx-auto"
+                    className="bg-green-500 text-blue-500 uppercase font-bold flex items-center justify-center w-[136px] sm:rounded-l-none rounded-md text-xs h-12 mx-auto peer-invalid:pointer-events-none peer-invalid:opacity-70"
                 >
                     Subscribe
                 </button>
